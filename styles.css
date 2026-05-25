@@ -1,0 +1,176 @@
+/* styles.css - Custom stylesheet for Dr. Nirmalya Mohapatra's Website */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Typography Defaults */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Theme variables */
+:root {
+  --primary-orange: #FF7722;
+  --primary-orange-hover: #E05F13;
+  --primary-orange-light: #FFF7ED;
+  --primary-orange-glow: rgba(255, 119, 34, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF9F6;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 9999px;
+  border: 2px solid #FAF9F6;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+  border: 2px solid #0B0F19;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF7722;
+}
+
+/* Custom Scroll Animations (Reveal on Scroll) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slow reveal delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Custom Glow / Radial Gradient Backdrops */
+.glow-accent {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 119, 34, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .glow-accent {
+  background: radial-gradient(circle, rgba(255, 119, 34, 0.06) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+/* Custom Micro-animations & Interactive effects */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 119, 34, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px 4px rgba(255, 119, 34, 0.2);
+  }
+}
+
+.btn-pulse-orange {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.btn-pulse-orange:hover {
+  animation: none;
+}
+
+/* Grid Card Hover Lift */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.05), 0 0 16px 2px rgba(255, 119, 34, 0.05);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.3), 0 0 16px 2px rgba(255, 119, 34, 0.08);
+}
+
+/* Smooth active states for scroll-spy */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-orange);
+  transition: width 0.3s ease;
+}
+
+.nav-link.active {
+  color: var(--primary-orange);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--primary-orange);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Standard timeline dashed track */
+.timeline-track {
+  background-image: linear-gradient(to bottom, #FF7722 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: right;
+  background-size: 2px 10px;
+  background-repeat: repeat-y;
+}
+
+/* Google Maps container rounded styling */
+.maps-container iframe {
+  filter: grayscale(10%) contrast(100%);
+  transition: filter 0.5s ease;
+}
+
+.maps-container:hover iframe {
+  filter: grayscale(0%) contrast(100%);
+}
+
+.dark .maps-container iframe {
+  filter: invert(90%) hue-rotate(180deg) contrast(110%);
+}
